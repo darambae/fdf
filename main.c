@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/15 10:46:46 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/18 11:05:22 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 		parse_map(av[1], map);
 		set_default(param);
 		line_drawing_algorithm(map);
-		draw_lines();
+		drawline(map);
 	}
 	else
 		err_msg_exit("Insufficient or too many arguments");
