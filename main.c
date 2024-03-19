@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/18 17:59:29 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/19 05:42:25 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int	main(int ac, char **av)
 	/*Pseudo code*/
 	if (ac == 2)
 	{
-		parse_map(av[1], map);
+		map = NULL;
+		param = NULL;
+		parse_map(av[1], map, param);
 		set_default(param);
 		drawlines(map, param);
 	}

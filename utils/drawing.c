@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/18 17:56:42 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/18 17:57:24 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	color(float a, float b)
 		color = 0xff00aa;
 	else
 		color = 0x00ffaa;
+	return (color);
 }
 
 static void	line(t_map a, t_map b, t_param *param)
@@ -52,7 +53,6 @@ void	drawlines(t_map **map, t_param *param)
 {
 	int		x;
 	int		y;
-	int		color;
 
 	y = 0;
 	while (y + 1 < param->map_len)

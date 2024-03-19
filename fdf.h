@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/18 18:01:21 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/18 17:07:54 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	s_param
 float	absolute(float a);
 float	bigger(float a, float b);
 void	err_msg_exit(char *err_msg);
-void	parse_map(char *filename, t_map **map);
+void	parse_map(char *filename, t_map **map, t_param *param);
 int		create_trgb(int t, int r, int g, int b);
 void	drawlines(t_map **map, t_param *param);
 #endif
