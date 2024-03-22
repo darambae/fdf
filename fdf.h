@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/18 17:07:54 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/22 07:57:30 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,19 @@
 
 # include "mlx_linux/mlx.h"
 # include <stdlib.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <math.h>
 # include <errno.h>
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-# define MAP position[0][0]
-
 typedef struct s_map
 {
 	float	x;
 	float	y;
 	float	z;
-
+	bool	is_end;
 	int		color;
 }				t_map;
 
@@ -41,7 +40,8 @@ typedef struct	s_param
 	int		map_wid;
 	int		window_l;
 	int		window_w;
-
+	int		scale;
+	int		is_iso;
 	int		img_len;
 	int		img_width;
 }				t_param;
@@ -49,7 +49,7 @@ typedef struct	s_param
 float	absolute(float a);
 float	bigger(float a, float b);
 void	err_msg_exit(char *err_msg);
-void	parse_map(char *filename, t_map **map, t_param *param);
+t_map	**parse_map(char *filename, t_param *param);
 int		create_trgb(int t, int r, int g, int b);
 void	drawlines(t_map **map, t_param *param);
 #endif

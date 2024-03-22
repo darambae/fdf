@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/19 05:42:25 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/22 08:26:05 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static void	set_default(t_param *param)
 {
-	param->window_w = 1920;
-	param->window_l = 1000;
+	param->window_w = 1000;
+	param->window_l = 700;
 	param->mlx = mlx_init();
 	param->window = mlx_new_window(param->mlx,
 			param->window_w, param->window_l, "FDF");
-
+	param->map_wid = 0;
+	param->map_len = 0;
+	param->is_iso = 1;
+	param->scale = 20;
 }
 
 // void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -41,10 +44,15 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		map = NULL;
-		param = NULL;
-		parse_map(av[1], map, param);
+		param = (t_param *)malloc(sizeof(t_param));
+		if (!param)
+			err_msg_exit("Memory allocation failed");
 		set_default(param);
+		map = parse_map(av[1], param);
+		if (!map)
+			err_msg_exit("Reading map failed");
 		drawlines(map, param);
+		mlx_loop(param->mlx);
 	}
 	else
 		err_msg_exit("Insufficient or too many arguments");

@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/18 17:57:24 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/22 08:21:30 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,26 @@ static int	color(float a, float b)
 	return (color);
 }
 
+static void	zoom_and_move(t_map *a, t_map *b, t_param *param)
+{
+	// a->x = (a->x * param->scale) + (param->window_w / 3);
+	// a->y = (a->y * param->scale) + (param->window_l / 3);
+	// b->x = (b->x * param->scale) + (param->window_w / 3);
+	// b->y = (b->y * param->scale) + (param->window_l / 3);
+	a->x *= param->scale;
+	a->y *= param->scale;
+	b->x *= param->scale;
+	b->y *= param->scale;
+}
+
+
 static void	line(t_map a, t_map b, t_param *param)
 {
 	float	dx;
 	float	dy;
 	float	p;
 
+	zoom_and_move(&a, &b, param);
 	dx = b.x - a.x;
 	dy = b.y - a.y;
 	p = 2 * dy - dx;
@@ -36,16 +50,18 @@ static void	line(t_map a, t_map b, t_param *param)
 	{
 		if (p >= 0)
 		{
-			mlx_pixel_put(param->mlx, param->window, a.x, a.y, color(a.z, b.z));
-			a.y += absolute(dy) / bigger(absolute(dx), absolute(dy));
+			mlx_pixel_put(param->mlx, param->window, (int)a.x, (int)a.y, color(a.z, b.z));
+			//a.y += absolute(dy) / bigger(absolute(dx), absolute(dy));
+			a.y += 1;
 			p += 2 * dy - 2 * dx;
 		}
 		else
 		{
-			mlx_pixel_put(param->mlx, param->window, a.x, a.y, color(a.z, b.z));
+			mlx_pixel_put(param->mlx, param->window, (int)a.x, (int)a.y, color(a.z, b.z));
 			p += 2 * dy;
 		}
-		a.x += absolute(dx) / bigger(absolute(dx), absolute(dy));
+		//a.x += absolute(dx) / bigger(absolute(dx), absolute(dy));
+		a.x += 1;
 	}
 }
 
