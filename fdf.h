@@ -52,5 +52,10 @@ float	bigger(float a, float b);
 void	err_msg_exit(char *err_msg);
 t_map	**parse_map(char *filename, t_param *param);
 int		create_trgb(int t, int r, int g, int b);
+void	rotation_x(t_map *a, t_param *param);
+void	rotation_y(t_map *a, t_param *param);
+void	rotation_z(t_map *a, t_param *param);
+void	isometric(t_map *a, t_param *param);
+
 void	drawlines(t_map **map, t_param *param);
 #endif
