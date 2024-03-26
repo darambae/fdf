@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/22 08:07:06 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:11:14 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	cal_mem_map(char *filename, t_param *param)
 		line = NULL;
 		num_lines++;
 	}
-	param->map_len = num_lines - 1;
+	param->map_len = num_lines;
 	close(fd);
 }
 

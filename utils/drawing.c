@@ -6,11 +6,17 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/22 08:21:30 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/25 09:00:13 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+static void	isometric(t_map *a, t_param *param)
+{
+	a->x = (a->x - a->y) * cos(param->angle) - (a->y + a->x) * sin(param->angle);
+	a->y = 0.5 * ((a->x + a->y) * cos(param->angle) + (a->x - a->y) * sin(param->angle));
+}
 
 static int	color(float a, float b)
 {
@@ -25,16 +31,20 @@ static int	color(float a, float b)
 
 static void	zoom_and_move(t_map *a, t_map *b, t_param *param)
 {
-	// a->x = (a->x * param->scale) + (param->window_w / 3);
-	// a->y = (a->y * param->scale) + (param->window_l / 3);
-	// b->x = (b->x * param->scale) + (param->window_w / 3);
-	// b->y = (b->y * param->scale) + (param->window_l / 3);
 	a->x *= param->scale;
 	a->y *= param->scale;
 	b->x *= param->scale;
 	b->y *= param->scale;
+	if (param->is_iso)
+	{
+		isometric(a, param);
+		isometric(b, param);
+	}
+	a->x += (param->window_w / 3);
+	b->x += (param->window_w / 3);
+	a->y += (param->window_l / 3);
+	b->y += (param->window_l / 3);
 }
-
 
 static void	line(t_map a, t_map b, t_param *param)
 {
@@ -51,8 +61,7 @@ static void	line(t_map a, t_map b, t_param *param)
 		if (p >= 0)
 		{
 			mlx_pixel_put(param->mlx, param->window, (int)a.x, (int)a.y, color(a.z, b.z));
-			//a.y += absolute(dy) / bigger(absolute(dx), absolute(dy));
-			a.y += 1;
+			a.y += absolute(dy) / bigger(absolute(dx), absolute(dy));
 			p += 2 * dy - 2 * dx;
 		}
 		else
@@ -60,8 +69,7 @@ static void	line(t_map a, t_map b, t_param *param)
 			mlx_pixel_put(param->mlx, param->window, (int)a.x, (int)a.y, color(a.z, b.z));
 			p += 2 * dy;
 		}
-		//a.x += absolute(dx) / bigger(absolute(dx), absolute(dy));
-		a.x += 1;
+		a.x += absolute(dx) / bigger(absolute(dx), absolute(dy));
 	}
 }
 
@@ -71,15 +79,21 @@ void	drawlines(t_map **map, t_param *param)
 	int		y;
 
 	y = 0;
-	while (y + 1 < param->map_len)
+	while (y < param->map_len)
 	{
-		x = 0;
-		while (x + 1 < param->map_wid)
-		{
+		x = -1;
+		while (++x < param->map_wid - 1)
 			line(map[y][x], map[y][x + 1], param);
-			line(map[y][x], map[y + 1][x], param);
-			x++;
-		}
 		y++;
+		
+	}
+	x = 0;
+	while (x < param->map_wid)
+	{
+		y = -1;
+		while (++y < param->map_len - 1)
+			line(map[y][x], map[y + 1][x], param);
+		x++;
 	}
 }
+	

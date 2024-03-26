@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/22 07:57:30 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/25 08:34:19 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_param
 	int		window_w;
 	int		scale;
 	int		is_iso;
+	double	angle;
 	int		img_len;
 	int		img_width;
 }				t_param;

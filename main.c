@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/22 08:26:05 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/25 08:42:53 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	set_default(t_param *param)
 			param->window_w, param->window_l, "FDF");
 	param->map_wid = 0;
 	param->map_len = 0;
-	param->is_iso = 1;
+	param->is_iso = true;
+	param->angle = 5;
 	param->scale = 20;
 }
 
