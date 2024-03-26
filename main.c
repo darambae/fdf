@@ -22,7 +22,7 @@ static void	set_default(t_param *param)
 	param->map_wid = 0;
 	param->map_len = 0;
 	param->is_iso = true;
-	param->angle = 5;
+	param->angle = 0.523599;
 	param->scale = 20;
 }
 

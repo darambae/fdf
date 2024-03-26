@@ -23,21 +23,18 @@ static int	color(float a, float b)
 	return (color);
 }
 
-static void	zoom_and_move(t_map *a, t_map *b, t_param *param)
+static t_map	projection(t_map a, t_param *param)
 {
 	a->x *= param->scale;
 	a->y *= param->scale;
-	b->x *= param->scale;
-	b->y *= param->scale;
+	rotation_x(a, param);
+	rotation_y(a, param);
+	rotation_z(a, param);
 	if (param->is_iso)
-	{
 		isometric(a, param);
-		isometric(b, param);
-	}
-	a->x += (param->window_w / 3);
-	b->x += (param->window_w / 3);
-	a->y += (param->window_l / 3);
-	b->y += (param->window_l / 3);
+	a->x += (param->window_w / 4);
+	a->y += (param->window_l / 4);
+	return (a);
 }
 
 static void	line(t_map a, t_map b, t_param *param)
@@ -46,7 +43,6 @@ static void	line(t_map a, t_map b, t_param *param)
 	float	dy;
 	float	p;
 
-	zoom_and_move(&a, &b, param);
 	dx = b.x - a.x;
 	dy = b.y - a.y;
 	p = 2 * dy - dx;
@@ -72,22 +68,17 @@ void	drawlines(t_map **map, t_param *param)
 	int		x;
 	int		y;
 
-	y = 0;
-	while (y < param->map_len)
+	y = -1;
+	while (++y < param->map_len)
 	{
 		x = -1;
-		while (++x < param->map_wid - 1)
-			line(map[y][x], map[y][x + 1], param);
-		y++;
-		
-	}
-	x = 0;
-	while (x < param->map_wid)
-	{
-		y = -1;
-		while (++y < param->map_len - 1)
-			line(map[y][x], map[y + 1][x], param);
-		x++;
+		while (++x < param->map_wid)
+		{
+			if (x != param->map_wid - 1)
+				line(projection(map[y][x]), projection(map[y][x + 1]), param);
+			if (y != param->map_len - 1)
+				line(projection(map[y][x]), projection(map[y + 1][x]), param);
+		}
 	}
 }
 	

@@ -33,6 +33,6 @@ void	rotation_z(t_map *a, t_param *param)
 
 void	isometric(t_map *a, t_param *param)
 {
-	a->x = (a->x - a->y) * cos(param->angle) - (a->y + a->x) * sin(param->angle);
-	a->y = 0.5 * ((a->x + a->y) * cos(param->angle) + (a->x - a->y) * sin(param->angle));
+	a->x = (a->x - a->y) * cos(param->angle);
+	a->y = (a->x + a->y) * sin(param->angle) - a->z;
 }
