@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/25 08:34:19 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/26 13:29:26 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ float	bigger(float a, float b);
 void	err_msg_exit(char *err_msg);
 t_map	**parse_map(char *filename, t_param *param);
 int		create_trgb(int t, int r, int g, int b);
-void	rotation_x(t_map *a, t_param *param);
-void	rotation_y(t_map *a, t_param *param);
-void	rotation_z(t_map *a, t_param *param);
-void	isometric(t_map *a, t_param *param);
+void	rotation_x(t_map a, t_param *param);
+void	rotation_y(t_map a, t_param *param);
+void	rotation_z(t_map a, t_param *param);
+void	isometric(t_map a, t_param *param);
 
 void	drawlines(t_map **map, t_param *param);
 #endif

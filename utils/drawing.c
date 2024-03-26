@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/26 07:51:04 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/26 13:29:48 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ static int	color(float a, float b)
 
 static t_map	projection(t_map a, t_param *param)
 {
-	a->x *= param->scale;
-	a->y *= param->scale;
+	a.x *= param->scale;
+	a.y *= param->scale;
 	rotation_x(a, param);
 	rotation_y(a, param);
 	rotation_z(a, param);
 	if (param->is_iso)
 		isometric(a, param);
-	a->x += (param->window_w / 4);
-	a->y += (param->window_l / 4);
+	a.x += (param->window_w / 4);
+	a.y += (param->window_l / 4);
 	return (a);
 }
 
@@ -81,4 +81,3 @@ void	drawlines(t_map **map, t_param *param)
 		}
 	}
 }
-	
