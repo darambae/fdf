@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 08:21:22 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/26 13:59:30 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 11:07:57 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,26 @@ void	err_msg_exit(char *err_msg)
 	errno = -1;
 	perror(err_msg);
 	exit(1);
+}
+
+void	free_map(t_map ***map, t_param *param)
+{
+	int	x;
+	int	y;
+
+	if (!map || !*map)
+		return ;
+	y = 0;
+	while (map[y] && y < param->map_len)
+	{
+		x = 0;
+		while (map[y][x] && x < param->map_len)
+		{
+			free(map[y][x]);
+			x++;
+		}
+		free(map[y]);
+		y++;
+	}
+	map = NULL;
 }

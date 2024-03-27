@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 10:15:59 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 10:52:14 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,35 @@
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-# define LEFT_KEY	123
-# define RIGHT_KEY	124
-# define UP_KEY		126
-# define DOWN_KEY	125
+# define LEFT_KEY       65361
+# define RIGHT_KEY      65363
+# define UP_KEY         65362
+# define DOWN_KEY       65364
 
-# define NUM_0			82
-# define NUM_1			83
-# define NUM_2			84
-# define NUM_3			85
-# define NUM_4			86
-# define NUM_5			87
-# define NUM_6			88
-# define NUM_7			89
-# define NUM_8			91
-# define NUM_PLUS		69
-# define NUM_MINUS		78
+# define NUM_0          48
+# define NUM_1          49
+# define NUM_2          50
+# define NUM_3          51
+# define NUM_4          52
+# define NUM_5          53
+# define NUM_6          54
+# define NUM_7          55
+# define NUM_8          56
+# define NUM_PLUS       61
+# define NUM_MINUS      45
 
-# define MAIN_PAD_ESC		53
-# define MAIN_PAD_0			29
-# define MAIN_PAD_1			18
-# define MAIN_PAD_2			19
-# define MAIN_PAD_3			20
-# define MAIN_PAD_4			21
-# define MAIN_PAD_5			23
-# define MAIN_PAD_6			22
-# define MAIN_PAD_7			26
-# define MAIN_PAD_8			28
-# define MAIN_PAD_PLUS		24
-# define MAIN_PAD_MINUS		27
+# define MAIN_PAD_ESC   65307
+# define MAIN_PAD_0     65438
+# define MAIN_PAD_1     65436
+# define MAIN_PAD_2     65433
+# define MAIN_PAD_3     65435
+# define MAIN_PAD_4     65430
+# define MAIN_PAD_5     65437
+# define MAIN_PAD_6     65432
+# define MAIN_PAD_7     65429
+# define MAIN_PAD_8     65431
+//# define MAIN_PAD_PLUS  24
+//# define MAIN_PAD_MINUS 27
 
 typedef struct s_map
 {
@@ -103,4 +103,7 @@ void	zoom(int key, t_param *param, t_map **map);
 void	move(int key, t_param *param, t_map **map);
 void	rotate(int key, t_param *param, t_map **map);
 void	change_projection(int key, t_param *param, t_map **map);
+
+void	free_map(t_map ***map, t_param *param);
+
 #endif

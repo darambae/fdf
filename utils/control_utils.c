@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:52 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 10:23:22 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 10:53:33 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	zoom(int key, t_param *param, t_map **map)
 {
-	if (key == NUM_PLUS || key == MAIN_PAD_PLUS)
+	if (key == NUM_PLUS)
 		param->scale += 1;
-	else if (key == NUM_MINUS || key == MAIN_PAD_MINUS)
+	else if (key == NUM_MINUS)
 		param->scale -= 1;
 	if (param->scale < 1)
 		param->scale = 1;
