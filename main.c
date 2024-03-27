@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 08:03:00 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 09:56:33 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	set_default(t_param *param)
 	param->window = mlx_new_window(param->mlx,
 			param->window_w, param->window_l, "FDF");
 	param->img = mlx_new_image(param->mlx, param->window_w, param->window_l);
-	param->data_addr = mlx_get_data_addr(param->img, &(param->bits_per_pixel), &(param->line_len), &(param->endian));
+	param->data_addr = mlx_get_data_addr(param->img, &(param->bits_per_pixel),
+			&(param->line_len), &(param->endian));
 	param->map_wid = 0;
 	param->map_len = 0;
 	param->is_iso = true;
@@ -29,15 +30,15 @@ static void	set_default(t_param *param)
 	param->z_angle = 0;
 	param->iso_angle = 1;
 	param->scale = 20;
+	param->x_offset = 0;
+	param->y_offset = 0;
 }
-
 
 int	main(int ac, char **av)
 {
 	t_map	**map;
 	t_param	*param;
 
-	/*Pseudo code*/
 	if (ac == 2)
 	{
 		map = NULL;
@@ -54,6 +55,5 @@ int	main(int ac, char **av)
 	}
 	else
 		err_msg_exit("Insufficient or too many arguments");
-		
 	return (EXIT_SUCCESS);
 }

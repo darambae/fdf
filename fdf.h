@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 08:05:16 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 10:15:59 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@
 # define NUM_6			88
 # define NUM_7			89
 # define NUM_8			91
-# define NUM_9			92
 # define NUM_PLUS		69
 # define NUM_MINUS		78
 
 # define MAIN_PAD_ESC		53
-# define MAIN_PAD_I			34
-# define MAIN_PAD_P			35
 # define MAIN_PAD_0			29
 # define MAIN_PAD_1			18
 # define MAIN_PAD_2			19
@@ -52,11 +49,8 @@
 # define MAIN_PAD_6			22
 # define MAIN_PAD_7			26
 # define MAIN_PAD_8			28
-# define MAIN_PAD_9			25
 # define MAIN_PAD_PLUS		24
 # define MAIN_PAD_MINUS		27
-# define MAIN_PAD_LESS		43
-# define MAIN_PAD_MORE		47
 
 typedef struct s_map
 {
@@ -88,7 +82,9 @@ typedef struct	s_param
 	double	iso_angle;
 	int		img_len;
 	int		img_width;
-}				t_param;
+	int		x_offset;
+	int		y_offset;
+}			t_param;
 
 float	absolute(float a);
 int		is_positive(float a);
@@ -102,6 +98,9 @@ void	isometric(t_map *a, t_param *param);
 
 void	drawlines(t_map **map, t_param *param);
 
-void    setting_controls(t_param *param);
-
+void	setting_controls(t_param *param);
+void	zoom(int key, t_param *param, t_map **map);
+void	move(int key, t_param *param, t_map **map);
+void	rotate(int key, t_param *param, t_map **map);
+void	change_projection(int key, t_param *param, t_map **map);
 #endif
