@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 09:56:33 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 14:54:56 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	set_default(t_param *param)
 	param->x_angle = 0;
 	param->y_angle = 0;
 	param->z_angle = 0;
-	param->iso_angle = 1;
+	param->iso_angle = 0.5;
 	param->scale = 20;
 	param->x_offset = 0;
 	param->y_offset = 0;
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		if (!map)
 			err_msg_exit("Reading map failed");
 		drawlines(map, param);
-		setting_controls(param);
+		setting_controls(param, map);
 		mlx_loop(param->mlx);
 	}
 	else
