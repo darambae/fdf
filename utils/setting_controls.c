@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   setting_controls.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 08:21:22 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/26 13:59:30 by dabae            ###   ########.fr       */
+/*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
+/*   Updated: 2024/03/27 08:12:06 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	create_trgb(int t, int r, int g, int b)
+static void close(t_param *param)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+    exit(0);
 }
 
-float	absolute(float a)
+static void key_press(int key, t_param *param)
 {
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
+    if (key == MAIN_PAD_ESC)
 }
-
-int	is_positive(float a)
+void    setting_controls(t_param *param)
 {
-	if (a > 0)
-		return (1);
-	else
-		return (-1);
-}
-
-void	err_msg_exit(char *err_msg)
-{
-	errno = -1;
-	perror(err_msg);
-	exit(1);
+    mlx_hook(param->window, 2, 0, key_press, param);
+    mlx_hook(param->window, 2, 0, close, param);
 }

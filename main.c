@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/25 08:42:53 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/27 08:03:00 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,17 @@ static void	set_default(t_param *param)
 	param->mlx = mlx_init();
 	param->window = mlx_new_window(param->mlx,
 			param->window_w, param->window_l, "FDF");
+	param->img = mlx_new_image(param->mlx, param->window_w, param->window_l);
+	param->data_addr = mlx_get_data_addr(param->img, &(param->bits_per_pixel), &(param->line_len), &(param->endian));
 	param->map_wid = 0;
 	param->map_len = 0;
 	param->is_iso = true;
-	param->angle = 0.523599;
+	param->x_angle = 0;
+	param->y_angle = 0;
+	param->z_angle = 0;
+	param->iso_angle = 1;
 	param->scale = 20;
 }
-
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
-
 
 
 int	main(int ac, char **av)
@@ -53,9 +49,11 @@ int	main(int ac, char **av)
 		if (!map)
 			err_msg_exit("Reading map failed");
 		drawlines(map, param);
+		setting_controls(param);
 		mlx_loop(param->mlx);
 	}
 	else
 		err_msg_exit("Insufficient or too many arguments");
+		
 	return (EXIT_SUCCESS);
 }
