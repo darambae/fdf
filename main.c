@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 14:54:56 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 08:41:26 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		if (!map)
 			err_msg_exit("Reading map failed");
 		drawlines(map, param);
-		setting_controls(param, map);
+		setting_controls(param);
 		mlx_loop(param->mlx);
 	}
 	else

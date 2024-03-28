@@ -6,13 +6,13 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:52 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 10:53:33 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 08:35:06 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	zoom(int key, t_param *param, t_map **map)
+void	zoom(int key, t_param *param)
 {
 	if (key == NUM_PLUS)
 		param->scale += 1;
@@ -20,10 +20,9 @@ void	zoom(int key, t_param *param, t_map **map)
 		param->scale -= 1;
 	if (param->scale < 1)
 		param->scale = 1;
-	drawlines(map, param);
 }
 
-void	move(int key, t_param *param, t_map **map)
+void	move(int key, t_param *param)
 {
 	if (key == LEFT_KEY)
 		param->x_offset -= 5;
@@ -33,10 +32,9 @@ void	move(int key, t_param *param, t_map **map)
 		param->y_offset += 5;
 	else if (key == UP_KEY)
 		param->y_offset -= 5;
-	drawlines(map, param);
 }
 
-void	rotate(int key, t_param *param, t_map **map)
+void	rotate(int key, t_param *param)
 {
 	if (key == NUM_1 || key == MAIN_PAD_1)
 		param->x_angle += 0.05;
@@ -56,10 +54,9 @@ void	rotate(int key, t_param *param, t_map **map)
 		param->y_angle = 0;
 		param->z_angle = 0;
 	}
-	drawlines(map, param);
 }
 
-void	change_projection(int key, t_param *param, t_map **map)
+void	change_projection(int key, t_param *param)
 {
 	param->x_angle = 0;
 	param->y_angle = 0;
@@ -74,5 +71,4 @@ void	change_projection(int key, t_param *param, t_map **map)
 		param->is_iso = true;
 		param->iso_angle = 1;
 	}
-	drawlines(map, param);
 }

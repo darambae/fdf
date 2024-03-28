@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 14:55:43 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 08:41:20 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ void	isometric(t_map *a, t_param *param);
 
 void	drawlines(t_map **map, t_param *param);
 
-void	setting_controls(t_param *param, t_map **map);
-void	zoom(int key, t_param *param, t_map **map);
-void	move(int key, t_param *param, t_map **map);
-void	rotate(int key, t_param *param, t_map **map);
-void	change_projection(int key, t_param *param, t_map **map);
+void	setting_controls(t_param *param);
+void	zoom(int key, t_param *param);
+void	move(int key, t_param *param);
+void	rotate(int key, t_param *param);
+void	change_projection(int key, t_param *param);
 
 void	free_map(t_map ***map, t_param *param);
 
