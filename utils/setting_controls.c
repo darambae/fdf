@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 11:10:46 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 12:48:48 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	key_press(int key, t_param *param)
 
 static int	rerendering(int key, t_param *param)
 {
-	ft_bzero(param->data_addr, sizeof(int) * param->map_len * param->map_wid);
+	ft_bzero(param->data_addr, sizeof(int) * param->window_l * param->window_w);
 	key_press(key, param);
 	drawlines(param);
 	return (0);
