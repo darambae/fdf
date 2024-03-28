@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 08:41:51 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 11:10:46 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static int	close_window(t_param *param)
 	exit(0);
 }
 
-static void	key_press(int key, t_param *param, t_map **map)
+static void	key_press(int key, t_param *param)
 {
 	if (key == MAIN_PAD_ESC)
 	{
-	    free_map(&map, param);
+	    free_map(&(param->map), param);
 		mlx_destroy_window(param->mlx, param->window);
 		exit(0);
 	}
@@ -44,11 +44,11 @@ static void	key_press(int key, t_param *param, t_map **map)
 		change_projection(key, param);
 }
 
-static int	rerendering(int key, t_param *param, t_map **map)
+static int	rerendering(int key, t_param *param)
 {
-	mlx_clear_window(param->mlx, param->window);
-	key_press(key, param, map);
-	drawlines(map, param);
+	ft_bzero(param->data_addr, sizeof(int) * param->map_len * param->map_wid);
+	key_press(key, param);
+	drawlines(param);
 	return (0);
 }
 

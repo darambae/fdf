@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 08:41:20 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 11:05:12 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ typedef struct	s_param
 	double	y_angle;
 	double	z_angle;	
 	double	iso_angle;
-	int		img_len;
-	int		img_width;
 	int		x_offset;
 	int		y_offset;
+	t_map	**map;
 }			t_param;
 
 float	absolute(float a);
@@ -96,7 +95,7 @@ void	rotation_y(t_map *a, t_param *param);
 void	rotation_z(t_map *a, t_param *param);
 void	isometric(t_map *a, t_param *param);
 
-void	drawlines(t_map **map, t_param *param);
+void	drawlines(t_param *param);
 
 void	setting_controls(t_param *param);
 void	zoom(int key, t_param *param);

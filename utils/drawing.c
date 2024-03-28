@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/27 10:12:46 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 08:54:13 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	line(t_map a, t_map b, t_param *param)
 	}
 }
 
-void	drawlines(t_map **map, t_param *param)
+void	drawlines(t_param *param)
 {
 	int		x;
 	int		y;
@@ -86,11 +86,11 @@ void	drawlines(t_map **map, t_param *param)
 		while (++x < param->map_wid)
 		{
 			if (x != param->map_wid - 1)
-				line(projection(map[y][x], param),
-					projection(map[y][x + 1], param), param);
+				line(projection(param->map[y][x], param),
+					projection(param->map[y][x + 1], param), param);
 			if (y != param->map_len - 1)
-				line(projection(map[y][x], param),
-					projection(map[y + 1][x], param), param);
+				line(projection(param->map[y][x], param),
+					projection(param->map[y + 1][x], param), param);
 		}
 	}
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);

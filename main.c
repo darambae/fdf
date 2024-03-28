@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 08:41:26 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 08:53:39 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ static void	set_default(t_param *param)
 
 int	main(int ac, char **av)
 {
-	t_map	**map;
 	t_param	*param;
 
 	if (ac == 2)
 	{
-		map = NULL;
 		param = (t_param *)malloc(sizeof(t_param));
 		if (!param)
 			err_msg_exit("Memory allocation failed");
 		set_default(param);
-		map = parse_map(av[1], param);
-		if (!map)
+		param->map = parse_map(av[1], param);
+		if (!param->map)
 			err_msg_exit("Reading map failed");
-		drawlines(map, param);
+		drawlines(param);
 		setting_controls(param);
 		mlx_loop(param->mlx);
 	}
