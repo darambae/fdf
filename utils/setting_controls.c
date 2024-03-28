@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 12:48:48 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:42:21 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	key_press(int key, t_param *param)
 {
 	if (key == MAIN_PAD_ESC)
 	{
-	    free_map(&(param->map), param);
+	    free_map(param);
 		mlx_destroy_window(param->mlx, param->window);
 		exit(0);
 	}
@@ -54,7 +54,6 @@ static int	rerendering(int key, t_param *param)
 
 void	setting_controls(t_param *param)
 {
-	//mlx_key_hook(param->window, key_press, param);
 	mlx_hook(param->window, 2, 1L << 0, rerendering, param);
 	mlx_hook(param->window, 17, 0, close_window, param);
 }

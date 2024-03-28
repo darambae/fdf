@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 11:05:12 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:41:48 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ void	move(int key, t_param *param);
 void	rotate(int key, t_param *param);
 void	change_projection(int key, t_param *param);
 
-void	free_map(t_map ***map, t_param *param);
+void	free_map(t_param *param);
 
 #endif

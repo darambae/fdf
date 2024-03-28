@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:52 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 08:35:06 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:52:24 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ void	change_projection(int key, t_param *param)
 	else if (key == NUM_3)
 	{
 		param->is_iso = true;
-		param->iso_angle = 1;
+		param->iso_angle = 0.5;
 	}
 }
