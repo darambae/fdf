@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 13:11:07 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 15:28:17 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	key_press(int key, t_param *param)
 	else if (key == NUM_0 || key == MAIN_PAD_0)
 		reset_camera(key, param);
 	else if (key == MAIN_PAD_H || key == MAIN_PAD_L)
-		change_height(key, param);	
+		change_height(key, param);
 }
 
 static int	rerendering(int key, t_param *param)
