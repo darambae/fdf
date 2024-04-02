@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 13:41:48 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 07:48:43 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ typedef struct	s_param
 	int		endian;
 	int		map_len;
 	int		map_wid;
+	float	max_z;
+	float	min_z;
 	int		window_l;
 	int		window_w;
-	int		scale;
+	float	scale;
 	int		is_iso;
 	double	x_angle;
 	double	y_angle;
@@ -89,20 +91,24 @@ float	absolute(float a);
 int		is_positive(float a);
 void	err_msg_exit(char *err_msg);
 t_map	**parse_map(char *filename, t_param *param);
-int		create_trgb(int t, int r, int g, int b);
 void	rotation_x(t_map *a, t_param *param);
 void	rotation_y(t_map *a, t_param *param);
 void	rotation_z(t_map *a, t_param *param);
 void	isometric(t_map *a, t_param *param);
+float	get_scale(t_param *param);
+void	get_max_z(t_param *param);
+void	get_min_z(t_param *param);
 
 void	drawlines(t_param *param);
 
 void	setting_controls(t_param *param);
+int		create_trgb(int t, int r, int g, int b);
+void	set_color(t_param *param);
 void	zoom(int key, t_param *param);
 void	move(int key, t_param *param);
 void	rotate(int key, t_param *param);
 void	change_projection(int key, t_param *param);
-
+void	reset_camera(int key, t_param *param);
 void	free_map(t_param *param);
 
 #endif

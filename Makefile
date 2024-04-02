@@ -6,7 +6,7 @@
 #    By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 10:16:00 by dabae             #+#    #+#              #
-#    Updated: 2024/03/27 09:30:30 by dabae            ###   ########.fr        #
+#    Updated: 2024/03/29 08:55:57 by dabae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT = libft/libft.a
 GET_NEXT_LINE_DIR = get_next_line
 GET_NEXT_LINE = $(wildcard $(GET_NEXT_LINE_DIR)/*.c)
 SRC_MAN = main.c utils/drawing.c utils/parsing.c utils/utils.c utils/rotating.c \
-		 utils/control_utils.c utils/setting_controls.c
+		 utils/control_utils.c utils/setting_controls.c utils/coloring.c
 OBJ_MAN = $(SRC_MAN:.c=.o) $(GET_NEXT_LINE:.c=.o)
 MLX = mlx_linux
 MLXLIB = $(MLX)/libmlx_Linux.a

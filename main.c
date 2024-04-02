@@ -6,11 +6,28 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 13:48:50 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 08:12:20 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+float	get_scale(t_param *param)
+{
+	int	scale;
+
+	scale = 0;
+	if (param->map_len > param->map_wid)
+		scale = param->window_l / param->map_len / 2;
+	else
+		scale = param->window_w / param->map_wid / 2;
+	return (scale);
+}
+
+static void	get_offset(t_param *param)
+{
+	param->x_offset = param->window_w / 2;
+	param->y_offset = (param->window_l - param->map_len * param->scale) / 2;
+}
 
 static void	set_default(t_param *param)
 {
@@ -29,9 +46,6 @@ static void	set_default(t_param *param)
 	param->y_angle = 0;
 	param->z_angle = 0;
 	param->iso_angle = 0.5;
-	param->scale = 1;
-	param->x_offset = 0;
-	param->y_offset = 0;
 }
 
 int	main(int ac, char **av)
@@ -47,6 +61,11 @@ int	main(int ac, char **av)
 		param->map = parse_map(av[1], param);
 		if (!param->map)
 			err_msg_exit("Reading map failed");
+		get_max_z(param);
+		get_min_z(param);
+		set_color(param);
+		param->scale = get_scale(param);
+		get_offset(param);
 		drawlines(param);
 		setting_controls(param);
 		mlx_loop(param->mlx);

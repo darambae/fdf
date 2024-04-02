@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 13:42:21 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/29 08:01:28 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	key_press(int key, t_param *param)
 		rotate(key, param);
 	else if (key == NUM_3 || key == NUM_2)
 		change_projection(key, param);
+	else if (key == NUM_0 || key == MAIN_PAD_0)
+		reset_camera(key, param);
 }
 
 static int	rerendering(int key, t_param *param)

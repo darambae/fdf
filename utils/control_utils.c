@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:52 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 13:52:24 by dabae            ###   ########.fr       */
+/*   Updated: 2024/03/29 16:06:47 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void	zoom(int key, t_param *param)
 {
 	if (key == NUM_PLUS)
-		param->scale += 1;
+		param->scale += 0.5;
 	else if (key == NUM_MINUS)
-		param->scale -= 1;
-	if (param->scale < 1)
-		param->scale = 1;
+		param->scale -= 0.5;
 }
 
 void	move(int key, t_param *param)
@@ -48,12 +46,6 @@ void	rotate(int key, t_param *param)
 		param->z_angle += 0.05;
 	else if (key == NUM_8 || key == MAIN_PAD_8)
 		param->z_angle -= 0.05;
-	else if (key == NUM_0 || key == MAIN_PAD_0)
-	{
-		param->x_angle = 0;
-		param->y_angle = 0;
-		param->z_angle = 0;
-	}
 }
 
 void	change_projection(int key, t_param *param)
@@ -70,5 +62,20 @@ void	change_projection(int key, t_param *param)
 	{
 		param->is_iso = true;
 		param->iso_angle = 0.5;
+	}
+}
+
+void	reset_camera(int key, t_param *param)
+{
+	if (key == NUM_0 || key == MAIN_PAD_0)
+	{
+		param->x_angle = 0;
+		param->y_angle = 0;
+		param->z_angle = 0;
+		param->is_iso = true;
+		param->iso_angle = 0.5;
+		param->scale = get_scale(param);
+		param->x_offset = (param->window_w - param->map_wid * param->scale) / 2;
+		param->y_offset = (param->window_l - param->map_len * param->scale) / 2;
 	}
 }

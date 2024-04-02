@@ -6,35 +6,24 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/28 08:54:13 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 08:01:58 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static int	color(float a, float b)
-{
-	int	color;
-
-	if (a > 0 || b > 0)
-		color = 0xff00aa;
-	else
-		color = 0x00ffaa;
-	return (color);
-}
-
 static t_map	projection(t_map a, t_param *param)
 {
 	a.x *= param->scale;
 	a.y *= param->scale;
-	a.z *= 2;
+	a.z *= param->scale;
 	rotation_x(&a, param);
 	rotation_y(&a, param);
 	rotation_z(&a, param);
 	if (param->is_iso)
 		isometric(&a, param);
-	a.x += (param->window_w / 3) + param->x_offset;
-	a.y += (param->window_l / 3) + param->y_offset;
+	a.x += param->x_offset;
+	a.y += param->y_offset;
 	return (a);
 }
 
@@ -59,7 +48,7 @@ static void	line(t_map a, t_map b, t_param *param)
 		if (cur.x > param->window_w || cur.y > param->window_l
 			|| cur.y < 0 || cur.x < 0)
 			break ;
-		my_mlx_pixel_put(param, (int)cur.x, (int)cur.y, color(cur.z, b.z));
+		my_mlx_pixel_put(param, (int)cur.x, (int)cur.y, a.color);
 		err[1] = 2 * err[0];
 		if (err[1] >= -absolute(b.y - a.y))
 		{
@@ -72,6 +61,36 @@ static void	line(t_map a, t_map b, t_param *param)
 			cur.y += is_positive(b.y - a.y);
 		}
 	}
+}
+
+static void	print_menu(t_param *param)
+{
+	char	*str;
+
+	str = "Zoom: +/-";
+	mlx_string_put(param->mlx, param->window, 20, 20, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Move: Arrows";
+	mlx_string_put(param->mlx, param->window, 20, 40, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Rotate in x-axis: 1/4";
+	mlx_string_put(param->mlx, param->window, 20, 60, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Rotate in y-axis: 5/6";
+	mlx_string_put(param->mlx, param->window, 20, 80, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Rotate in z-axis: 7/8";
+	mlx_string_put(param->mlx, param->window, 20, 100, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Switching 2D/3D: 2/3";
+	mlx_string_put(param->mlx, param->window, 20, 120, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Reset: 0";
+	mlx_string_put(param->mlx, param->window, 20, 140, create_trgb(0, 50, 100, 205),
+		str);
+	str = "Exit: ESC";
+	mlx_string_put(param->mlx, param->window, 20, 160, create_trgb(0, 50, 100, 205),
+		str);
 }
 
 void	drawlines(t_param *param)
@@ -94,4 +113,5 @@ void	drawlines(t_param *param)
 		}
 	}
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
+	print_menu(param);
 }
