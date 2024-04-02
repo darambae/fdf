@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:52:53 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 14:57:29 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	key_press(int key, t_param *param)
 	else if (key == NUM_1 || key == NUM_4
 		|| key == NUM_5 || key == NUM_6
 		|| key == NUM_7 || key == NUM_8
-		|| key == NUM_0 || key == MAIN_PAD_1
+		|| key == MAIN_PAD_1
 		|| key == MAIN_PAD_4 || key == MAIN_PAD_5
 		|| key == MAIN_PAD_6 || key == MAIN_PAD_7
-		|| key == MAIN_PAD_8 || key == MAIN_PAD_0)
+		|| key == MAIN_PAD_8)
 		rotate(key, param);
 	else if (key == NUM_3 || key == NUM_2)
 		change_projection(key, param);

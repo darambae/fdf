@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:52:09 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 14:54:23 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	set_default(t_param *param)
 		close_window(param);
 		err_msg_exit("mlxlibx failed");
 	}
-	param->map = NULL;	
+	param->map = NULL;
 	param->map_wid = 0;
 	param->map_len = 0;
 	param->is_iso = true;

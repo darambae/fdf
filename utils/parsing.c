@@ -6,13 +6,13 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:47:52 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 14:52:45 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static t_map	**allocate_memory_map(t_param *param)
+static void	allocate_memory_map(t_param *param)
 {
 	int		line_len;
 	t_map	**map;
@@ -33,7 +33,7 @@ static t_map	**allocate_memory_map(t_param *param)
 			return (NULL);
 		}
 	}
-	return (map);
+	param->map = map;
 }
 
 static int	num_word(char **arr)
@@ -75,7 +75,7 @@ static void	cal_mem_map(char *filename, t_param *param)
 	close(fd);
 }
 
-static void	save_positions(char **positions, t_map **map, int y, t_param *param)
+static void	save_positions(char **positions, int y, t_param *param)
 {
 	int	x;
 
@@ -84,13 +84,13 @@ static void	save_positions(char **positions, t_map **map, int y, t_param *param)
 		return ;
 	while (positions[x] && x < param->map_wid)
 	{
-		map[y][x].x = x;
-		map[y][x].y = y;
-		map[y][x].z = (float)ft_atoi(positions[x]);
-		map[y][x].is_end = false;
+		param->map[y][x].x = x;
+		param->map[y][x].y = y;
+		param->map[y][x].z = (float)ft_atoi(positions[x]);
+		param->map[y][x].is_end = false;
 		x++;
 	}
-	map[y][--x].is_end = true;
+	param->map[y][--x].is_end = true;
 }
 
 /*parse_map : read a map file(*.fdf) and save the position and its height*/
@@ -99,15 +99,13 @@ void	parse_map(char *filename, t_param *param)
 {
 	int		fd;
 	char	*line;
-	char	**positions;
-	t_map	**map;
 	int		y;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		err_msg_exit("Unable to open the map file");
 	cal_mem_map(filename, param);
-	map = allocate_memory_map(param);
+	allocate_memory_map(param);
 	y = 0;
 	while (1)
 	{
@@ -117,13 +115,10 @@ void	parse_map(char *filename, t_param *param)
 			free(line);
 			break ;
 		}
-		positions = ft_split(line, ' ');
-		save_positions(positions, map, y, param);
-		ft_free_tab(positions);
+		save_positions(ft_split(line, ' '), y, param);
 		free(line);
 		y++;
 	}
-	map[y] = NULL;
+	param->map[y] = NULL;
 	close(fd);
-	param->map = map;
 }
