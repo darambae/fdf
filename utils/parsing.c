@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 11:07:18 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 10:47:52 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	save_positions(char **positions, t_map **map, int y, t_param *param)
 
 /*parse_map : read a map file(*.fdf) and save the position and its height*/
 
-t_map	**parse_map(char *filename, t_param *param)
+void	parse_map(char *filename, t_param *param)
 {
 	int		fd;
 	char	*line;
@@ -125,5 +125,5 @@ t_map	**parse_map(char *filename, t_param *param)
 	}
 	map[y] = NULL;
 	close(fd);
-	return (map);
+	param->map = map;
 }

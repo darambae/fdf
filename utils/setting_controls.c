@@ -6,26 +6,27 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 11:09:52 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 10:52:53 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static int	close_window(t_param *param)
+int	close_window(t_param *param)
 {
-	(void)param;
+	free_map(param);
+	mlx_destroy_image(param->mlx, param->img);
+	mlx_destroy_window(param->mlx, param->window);
+	mlx_destroy_display(param->mlx);
+	free(param->mlx);
+	free(param);
 	exit(0);
 }
 
 static void	key_press(int key, t_param *param)
 {
 	if (key == MAIN_PAD_ESC)
-	{
-		free_map(param);
-		mlx_destroy_window(param->mlx, param->window);
-		exit(0);
-	}
+		close_window(param);
 	if (key == NUM_PLUS
 		|| key == NUM_MINUS)
 		zoom(key, param);

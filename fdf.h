@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:58:56 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 10:53:32 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_param
 float	absolute(float a);
 int		is_positive(float a);
 void	err_msg_exit(char *err_msg);
-t_map	**parse_map(char *filename, t_param *param);
+void	parse_map(char *filename, t_param *param);
 void	rotation_x(t_map *a, t_param *param);
 void	rotation_y(t_map *a, t_param *param);
 void	rotation_z(t_map *a, t_param *param);
@@ -107,6 +107,7 @@ void	move(int key, t_param *param);
 void	rotate(int key, t_param *param);
 void	change_projection(int key, t_param *param);
 void	reset_camera(int key, t_param *param);
+int		close_window(t_param *param);
 void	free_map(t_param *param);
 
 #endif

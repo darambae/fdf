@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:55:29 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 10:52:09 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ static void	set_default(t_param *param)
 	param->img = mlx_new_image(param->mlx, param->window_w, param->window_l);
 	param->data_addr = mlx_get_data_addr(param->img, &(param->bits_per_pixel),
 			&(param->line_len), &(param->endian));
+	if (!param->mlx || !param->window || !param->img || !param->data_addr)
+	{
+		close_window(param);
+		err_msg_exit("mlxlibx failed");
+	}
+	param->map = NULL;	
 	param->map_wid = 0;
 	param->map_len = 0;
 	param->is_iso = true;
@@ -59,7 +65,7 @@ int	main(int ac, char **av)
 		if (!param)
 			err_msg_exit("Memory allocation failed");
 		set_default(param);
-		param->map = parse_map(av[1], param);
+		parse_map(av[1], param);
 		if (!param->map)
 			err_msg_exit("Reading map failed");
 		get_max_z(param);
