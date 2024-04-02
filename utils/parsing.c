@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 14:52:45 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:02:58 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	allocate_memory_map(t_param *param)
 	if (!map)
 	{
 		free(map);
-		return (NULL);
+		return ;
 	}
 	while (--line_len >= 0)
 	{
@@ -30,7 +30,7 @@ static void	allocate_memory_map(t_param *param)
 		if (!map[line_len])
 		{
 			free(map[line_len]);
-			return (NULL);
+			return ;
 		}
 	}
 	param->map = map;
@@ -87,10 +87,8 @@ static void	save_positions(char **positions, int y, t_param *param)
 		param->map[y][x].x = x;
 		param->map[y][x].y = y;
 		param->map[y][x].z = (float)ft_atoi(positions[x]);
-		param->map[y][x].is_end = false;
 		x++;
 	}
-	param->map[y][--x].is_end = true;
 }
 
 /*parse_map : read a map file(*.fdf) and save the position and its height*/

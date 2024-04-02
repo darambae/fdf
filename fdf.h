@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:53:32 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:10:15 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@
 # define MAIN_PAD_6     65432
 # define MAIN_PAD_7     65429
 # define MAIN_PAD_8     65431
+# define MAIN_PAD_H		104
+# define MAIN_PAD_L		108
 
 typedef struct s_map
 {
 	float	x;
 	float	y;
 	float	z;
-	bool	is_end;
 	int		color;
 }				t_map;
 
@@ -75,6 +76,7 @@ typedef struct s_param
 	int		window_l;
 	int		window_w;
 	float	scale;
+	float	z_scale;
 	int		is_iso;
 	double	x_angle;
 	double	y_angle;

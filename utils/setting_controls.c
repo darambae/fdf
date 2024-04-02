@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 14:57:29 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:11:07 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ int	close_window(t_param *param)
 	free(param->mlx);
 	free(param);
 	exit(0);
+}
+
+static void	change_height(int key, t_param *param)
+{
+	if (key == MAIN_PAD_H)
+		param->z_scale += 0.3;
+	else if (key == MAIN_PAD_L)
+		param->z_scale -= 0.3;
 }
 
 static void	key_press(int key, t_param *param)
@@ -45,6 +53,8 @@ static void	key_press(int key, t_param *param)
 		change_projection(key, param);
 	else if (key == NUM_0 || key == MAIN_PAD_0)
 		reset_camera(key, param);
+	else if (key == MAIN_PAD_H || key == MAIN_PAD_L)
+		change_height(key, param);	
 }
 
 static int	rerendering(int key, t_param *param)

@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:52 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 14:55:43 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:19:41 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	reset_camera(int key, t_param *param)
 		param->is_iso = true;
 		param->iso_angle = 0.5;
 		param->scale = get_scale(param);
+		param->z_scale = 0;
 		param->x_offset = param->window_w / 2;
 		param->y_offset = (param->window_l - param->map_len * param->scale) / 2;
 	}

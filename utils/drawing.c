@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 11:03:37 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:24:26 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_map	projection(t_map a, t_param *param)
 {
 	a.x *= param->scale;
 	a.y *= param->scale;
-	a.z *= param->scale;
+	a.z *= param->scale + param->z_scale;
 	rotation_x(&a, param);
 	rotation_y(&a, param);
 	rotation_z(&a, param);
@@ -68,18 +68,20 @@ static void	print_menu(t_param *param)
 	mlx_string_put(param->mlx, param->window, 20, 20,
 		create_trgb(0, 50, 100, 205), "Zoom: +/-");
 	mlx_string_put(param->mlx, param->window, 20, 40,
-		create_trgb(0, 50, 100, 205), "Move: Arrows");
+		create_trgb(0, 50, 100, 205), "Change height: H/L");
 	mlx_string_put(param->mlx, param->window, 20, 60,
-		create_trgb(0, 50, 100, 205), "Rotate in x-axis: 1/4");
+		create_trgb(0, 50, 100, 205), "Move: Arrows");
 	mlx_string_put(param->mlx, param->window, 20, 80,
-		create_trgb(0, 50, 100, 205), "Rotate in y-axis: 5/6");
+		create_trgb(0, 50, 100, 205), "Rotate in x-axis: 1/4");
 	mlx_string_put(param->mlx, param->window, 20, 100,
-		create_trgb(0, 50, 100, 205), "Rotate in z-axis: 7/8");
+		create_trgb(0, 50, 100, 205), "Rotate in y-axis: 5/6");
 	mlx_string_put(param->mlx, param->window, 20, 120,
-		create_trgb(0, 50, 100, 205), "Switching 2D/3D: 2/3");
+		create_trgb(0, 50, 100, 205), "Rotate in z-axis: 7/8");
 	mlx_string_put(param->mlx, param->window, 20, 140,
-		create_trgb(0, 50, 100, 205), "Reset: 0");
+		create_trgb(0, 50, 100, 205), "Switching 2D/3D: 2/3");
 	mlx_string_put(param->mlx, param->window, 20, 160,
+		create_trgb(0, 50, 100, 205), "Reset: 0");
+	mlx_string_put(param->mlx, param->window, 20, 180,
 		create_trgb(0, 50, 100, 205), "Exit: ESC");
 }
 

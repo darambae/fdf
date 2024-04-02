@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 14:54:23 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:20:46 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	set_default(t_param *param)
 	param->y_angle = 0;
 	param->z_angle = 0;
 	param->iso_angle = 0.5;
+	param->z_scale = 0;
 }
 
 int	main(int ac, char **av)
