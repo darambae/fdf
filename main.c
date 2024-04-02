@@ -6,11 +6,12 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 08:12:20 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 10:55:29 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
 float	get_scale(t_param *param)
 {
 	int	scale;

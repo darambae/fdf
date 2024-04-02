@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/22 13:11:14 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 11:07:18 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static t_map	**allocate_memory_map(t_param *param)
 {
 	int		line_len;
 	t_map	**map;
-	
+
 	line_len = param->map_len;
 	map = malloc(sizeof(t_map *) * (param->map_len + 1));
 	if (!map)
 	{
 		free(map);
-		return NULL;
+		return (NULL);
 	}
 	while (--line_len >= 0)
 	{
@@ -30,7 +30,7 @@ static t_map	**allocate_memory_map(t_param *param)
 		if (!map[line_len])
 		{
 			free(map[line_len]);
-			return NULL;
+			return (NULL);
 		}
 	}
 	return (map);
@@ -53,10 +53,8 @@ static void	cal_mem_map(char *filename, t_param *param)
 	int		fd;
 	char	*line;
 	char	**words;
-	int		num_lines;
-	
+
 	fd = open(filename, O_RDONLY);
-	num_lines = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -72,9 +70,8 @@ static void	cal_mem_map(char *filename, t_param *param)
 		ft_free_tab(words);
 		free(line);
 		line = NULL;
-		num_lines++;
+		param->map_len++;
 	}
-	param->map_len = num_lines;
 	close(fd);
 }
 
@@ -94,7 +91,6 @@ static void	save_positions(char **positions, t_map **map, int y, t_param *param)
 		x++;
 	}
 	map[y][--x].is_end = true;
-	
 }
 
 /*parse_map : read a map file(*.fdf) and save the position and its height*/
@@ -112,8 +108,6 @@ t_map	**parse_map(char *filename, t_param *param)
 		err_msg_exit("Unable to open the map file");
 	cal_mem_map(filename, param);
 	map = allocate_memory_map(param);
-	if (!map)
-		err_msg_exit("memory allocation failed");
 	y = 0;
 	while (1)
 	{

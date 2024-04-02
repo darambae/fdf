@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:42:59 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 07:49:13 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 11:00:32 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	get_max_z(t_param *param)
 {
-	int tmp;
-	int x;
-	int y;
-	
+	int	tmp;
+	int	x;
+	int	y;
+
 	tmp = param->map[0][0].z;
 	y = 0;
 	while (y < param->map_len)
@@ -36,9 +36,9 @@ void	get_max_z(t_param *param)
 
 void	get_min_z(t_param *param)
 {
-	int tmp;
-	int x;
-	int y;
+	int	tmp;
+	int	x;
+	int	y;
 
 	tmp = param->map[0][0].z;
 	y = 0;
@@ -58,10 +58,10 @@ void	get_min_z(t_param *param)
 
 void	set_color(t_param *param)
 {
-	int x;
-	int y;
-	int range;
-	
+	int	x;
+	int	y;
+	int	range;
+
 	range = param->max_z - param->min_z;
 	y = 0;
 	while (y < param->map_len)
@@ -72,9 +72,11 @@ void	set_color(t_param *param)
 			if (param->map[y][x].z == 0)
 				param->map[y][x].color = create_trgb(0, 0, 0, 150);
 			else if (param->map[y][x].z < 0)
-				param->map[y][x].color = create_trgb(0, 200 + (param->map[y][x].z / range), 0, 100);
+				param->map[y][x].color = create_trgb(0, 200
+						+ (param->map[y][x].z / range), 0, 100);
 			else if (param->map[y][x].z > 0)
-				param->map[y][x].color = create_trgb(0, 0, 200 * (param->map[y][x].z / range), 100);
+				param->map[y][x].color = create_trgb(0, 0, 200
+						* (param->map[y][x].z / range), 100);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 07:48:43 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/02 10:58:56 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@
 # define MAIN_PAD_6     65432
 # define MAIN_PAD_7     65429
 # define MAIN_PAD_8     65431
-//# define MAIN_PAD_PLUS  24
-//# define MAIN_PAD_MINUS 27
 
 typedef struct s_map
 {
@@ -61,7 +59,7 @@ typedef struct s_map
 	int		color;
 }				t_map;
 
-typedef struct	s_param
+typedef struct s_param
 {
 	void	*mlx;
 	void	*window;
