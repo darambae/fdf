@@ -6,30 +6,30 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 14:54:53 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 13:42:00 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static void	check_malloc(void *ptr)
-{
-	if (!ptr)
-	{
-		free(ptr);
-		err_msg_exit("Memory allocation failed");
-	}
-}
+// static void	check_malloc(void *ptr)
+// {
+// 	if (!ptr)
+// 	{
+// 		free(ptr);
+// 		err_msg_exit("Memory allocation failed");
+// 	}
+// }
 
 static void	allocate_memory_map(t_param *param, char *filename)
 {
 	int		fd;
 	int		line_len;
 	char	*line;
-	t_map	**map;
+	char	**words;
 
 	line_len = param->map_len;
-	map = malloc(sizeof(t_map *) * (line_len + 1));
+	param->map = malloc(sizeof(t_map *) * (line_len + 1));
 	fd = open(filename, O_RDONLY);
 	while (--line_len >= 0)
 	{
@@ -41,12 +41,12 @@ static void	allocate_memory_map(t_param *param, char *filename)
 			get_next_line(-1);
 			break ;
 		}
-		map[line_len] = malloc(sizeof(t_map)
-				* (num_word(ft_split(line, ' ')) + 1));
+		words = ft_split(line, ' ');
+		param->map[line_len] = malloc(sizeof(t_map) * (num_word(words) + 1));
+		ft_free_tab(words);
 		free(line);
 		line = NULL;
 	}
-	param->map = map;
 	close(fd);
 }
 
@@ -94,6 +94,7 @@ static void	save_positions(char **positions, int y, t_param *param)
 		x++;
 	}
 	param->map[y][x - 1].is_end_x = true;
+	ft_free_tab(positions);
 }
 
 /*parse_map : read a map file(*.fdf) and save the position and its height*/
@@ -106,7 +107,7 @@ void	parse_map(char *filename, t_param *param)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		err_msg_exit("Unable to open the map file");
+		close_window(param, 1);
 	cal_mem_map(filename, param);
 	allocate_memory_map(param, filename);
 	y = 0;

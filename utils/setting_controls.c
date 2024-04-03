@@ -6,13 +6,13 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 07:02:41 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 15:28:17 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 13:38:19 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	close_window(t_param *param)
+int	close_window(t_param *param, int is_error)
 {
 	free_map(param);
 	mlx_destroy_image(param->mlx, param->img);
@@ -20,7 +20,9 @@ int	close_window(t_param *param)
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
 	free(param);
-	exit(0);
+	if (is_error)
+		err_msg_exit("Error");
+	exit(is_error);
 }
 
 static void	change_height(int key, t_param *param)
@@ -34,7 +36,7 @@ static void	change_height(int key, t_param *param)
 static void	key_press(int key, t_param *param)
 {
 	if (key == MAIN_PAD_ESC)
-		close_window(param);
+		close_window(param, 0);
 	if (key == NUM_PLUS
 		|| key == NUM_MINUS)
 		zoom(key, param);

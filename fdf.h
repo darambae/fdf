@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 09:23:38 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 13:37:53 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	move(int key, t_param *param);
 void	rotate(int key, t_param *param);
 void	change_projection(int key, t_param *param);
 void	reset_camera(int key, t_param *param);
-int		close_window(t_param *param);
+int		close_window(t_param *param, int is_error);
 void	free_map(t_param *param);
 
 #endif

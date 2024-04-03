@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 09:21:21 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 13:40:05 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ static void	set_default(t_param *param)
 	param->data_addr = mlx_get_data_addr(param->img, &(param->bits_per_pixel),
 			&(param->line_len), &(param->endian));
 	if (!param->mlx || !param->window || !param->img || !param->data_addr)
-	{
-		close_window(param);
-		err_msg_exit("mlxlibx failed");
-	}
+		close_window(param, 1);
 	param->map = NULL;
 	param->map_max_wid = 0;
 	param->map_len = 0;
@@ -68,7 +65,7 @@ int	main(int ac, char **av)
 		set_default(param);
 		parse_map(av[1], param);
 		if (!param->map)
-			err_msg_exit("Reading map failed");
+			close_window(param, 1);
 		get_max_z(param);
 		get_min_z(param);
 		set_color(param);
