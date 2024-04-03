@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 14:44:18 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:54:53 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ static void	cal_mem_map(char *filename, t_param *param)
 {
 	int		fd;
 	char	*line;
-	int		tmp;
+	char	**words;
 
-	tmp = 0;
 	fd = open(filename, O_RDONLY);
 	while (1)
 	{
@@ -68,13 +67,14 @@ static void	cal_mem_map(char *filename, t_param *param)
 			get_next_line(-1);
 			break ;
 		}
-		if (num_word(ft_split(line, ' ')) > tmp)
-			tmp = num_word(ft_split(line, ' '));
+		words = ft_split(line, ' ');
+		if (num_word(words) > param->map_max_wid)
+			param->map_max_wid = num_word(words);
+		ft_free_tab(words);
 		free(line);
 		line = NULL;
 		param->map_len++;
 	}
-	param->map_max_wid = tmp;
 	close(fd);
 }
 
