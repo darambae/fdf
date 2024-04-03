@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:51:19 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 13:20:46 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 09:21:21 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ float	get_scale(t_param *param)
 	int	scale;
 
 	scale = 0;
-	if (param->map_len > param->map_wid)
+	if (param->map_len > param->map_max_wid)
 		scale = param->window_l / param->map_len / 2;
 	else
-		scale = param->window_w / param->map_wid / 2;
+		scale = param->window_w / param->map_max_wid / 2;
 	return (scale);
 }
 
@@ -46,7 +46,7 @@ static void	set_default(t_param *param)
 		err_msg_exit("mlxlibx failed");
 	}
 	param->map = NULL;
-	param->map_wid = 0;
+	param->map_max_wid = 0;
 	param->map_len = 0;
 	param->is_iso = true;
 	param->x_angle = 0;

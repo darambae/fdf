@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 13:10:15 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 09:23:38 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_map
 	float	x;
 	float	y;
 	float	z;
+	bool	is_end_x;
 	int		color;
 }				t_map;
 
@@ -70,7 +71,7 @@ typedef struct s_param
 	int		line_len;
 	int		endian;
 	int		map_len;
-	int		map_wid;
+	int		map_max_wid;
 	float	max_z;
 	float	min_z;
 	int		window_l;
@@ -87,6 +88,7 @@ typedef struct s_param
 	t_map	**map;
 }			t_param;
 
+int		num_word(char **arr);
 float	absolute(float a);
 int		is_positive(float a);
 void	err_msg_exit(char *err_msg);

@@ -6,11 +6,16 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:42:59 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 11:00:32 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 09:22:05 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
 void	get_max_z(t_param *param)
 {
@@ -23,7 +28,7 @@ void	get_max_z(t_param *param)
 	while (y < param->map_len)
 	{
 		x = 0;
-		while (x < param->map_wid)
+		while (x < param->map_max_wid)
 		{
 			if (param->map[y][x].z > tmp)
 				tmp = param->map[y][x].z;
@@ -45,7 +50,7 @@ void	get_min_z(t_param *param)
 	while (y < param->map_len)
 	{
 		x = 0;
-		while (x < param->map_wid)
+		while (x < param->map_max_wid)
 		{
 			if (param->map[y][x].z < tmp)
 				tmp = param->map[y][x].z;
@@ -67,7 +72,7 @@ void	set_color(t_param *param)
 	while (y < param->map_len)
 	{
 		x = 0;
-		while (x < param->map_wid)
+		while (x < param->map_max_wid)
 		{
 			if (param->map[y][x].z == 0)
 				param->map[y][x].color = create_trgb(0, 0, 0, 150);

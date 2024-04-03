@@ -6,15 +6,17 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 13:02:58 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 09:45:02 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static void	allocate_memory_map(t_param *param)
+static void	allocate_memory_map(t_param *param, char *filename)
 {
+	int		fd;
 	int		line_len;
+	char	*line;
 	t_map	**map;
 
 	line_len = param->map_len;
@@ -24,36 +26,37 @@ static void	allocate_memory_map(t_param *param)
 		free(map);
 		return ;
 	}
+	fd = open(filename, O_RDONLY);
 	while (--line_len >= 0)
 	{
-		map[line_len] = malloc(sizeof(t_map) * (param->map_wid));
+		line = get_next_line(fd);
+		if (!line)
+		{
+			close(fd);
+			free(line);
+			get_next_line(-1);
+			break ;
+		}
+		map[line_len] = malloc(sizeof(t_map) * (num_word(ft_split(line, ' ')) + 1));
 		if (!map[line_len])
 		{
 			free(map[line_len]);
 			return ;
 		}
+		free(line);
+		line = NULL;
 	}
 	param->map = map;
-}
-
-static int	num_word(char **arr)
-{
-	int	i;
-
-	if (!arr || !*arr)
-		return (0);
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
+	close(fd);
 }
 
 static void	cal_mem_map(char *filename, t_param *param)
 {
 	int		fd;
 	char	*line;
-	char	**words;
+	int		tmp;
 
+	tmp = 0;
 	fd = open(filename, O_RDONLY);
 	while (1)
 	{
@@ -65,13 +68,13 @@ static void	cal_mem_map(char *filename, t_param *param)
 			get_next_line(-1);
 			break ;
 		}
-		words = ft_split(line, ' ');
-		param->map_wid = num_word(words);
-		ft_free_tab(words);
+		if (num_word(ft_split(line, ' ')) > tmp)
+			tmp = num_word(ft_split(line, ' '));
 		free(line);
 		line = NULL;
 		param->map_len++;
 	}
+	param->map_max_wid = tmp;
 	close(fd);
 }
 
@@ -82,13 +85,15 @@ static void	save_positions(char **positions, int y, t_param *param)
 	x = 0;
 	if (y < 0 || y >= param->map_len)
 		return ;
-	while (positions[x] && x < param->map_wid)
+	while (positions[x] && x < param->map_max_wid)
 	{
 		param->map[y][x].x = x;
 		param->map[y][x].y = y;
 		param->map[y][x].z = (float)ft_atoi(positions[x]);
+		param->map[y][x].is_end_x = false;
 		x++;
 	}
+	param->map[y][x - 1].is_end_x = true;
 }
 
 /*parse_map : read a map file(*.fdf) and save the position and its height*/
@@ -103,7 +108,7 @@ void	parse_map(char *filename, t_param *param)
 	if (fd < 0)
 		err_msg_exit("Unable to open the map file");
 	cal_mem_map(filename, param);
-	allocate_memory_map(param);
+	allocate_memory_map(param, filename);
 	y = 0;
 	while (1)
 	{

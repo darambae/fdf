@@ -6,16 +6,11 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 08:21:22 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 10:26:37 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 09:22:52 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
 
 float	absolute(float a)
 {
@@ -31,6 +26,18 @@ int	is_positive(float a)
 		return (1);
 	else
 		return (-1);
+}
+
+int	num_word(char **arr)
+{
+	int	i;
+
+	if (!arr || !*arr)
+		return (0);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
 void	err_msg_exit(char *err_msg)

@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/02 13:24:26 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 10:31:05 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	line(t_map a, t_map b, t_param *param)
 
 	err[0] = absolute(b.x - a.x) - absolute(b.y - a.y);
 	cur = a;
-	while ((int)(cur.x - b.x) || (int)(cur.y - b.y))
+	while ((int)(cur.x - b.x) || (int)(cur.y - b.y))		
 	{
 		if (cur.x > param->window_w || cur.y > param->window_l
 			|| cur.y < 0 || cur.x < 0)
@@ -94,11 +94,17 @@ void	drawlines(t_param *param)
 	while (++y < param->map_len)
 	{
 		x = -1;
-		while (++x < param->map_wid)
+		while (++x < param->map_max_wid && param->map[y][x].is_end_x == false)
 		{
-			if (x != param->map_wid - 1)
+			if (x != param->map_max_wid - 1)
 				line(projection(param->map[y][x], param),
 					projection(param->map[y][x + 1], param), param);
+			if (y != param->map_len - 1)
+				line(projection(param->map[y][x], param),
+					projection(param->map[y + 1][x], param), param);
+		}
+		if (x < param->map_max_wid && param->map[y][x].is_end_x == true)
+		{
 			if (y != param->map_len - 1)
 				line(projection(param->map[y][x], param),
 					projection(param->map[y + 1][x], param), param);
