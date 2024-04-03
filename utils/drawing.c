@@ -6,7 +6,7 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:19:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 10:31:05 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:38:16 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	line(t_map a, t_map b, t_param *param)
 
 	err[0] = absolute(b.x - a.x) - absolute(b.y - a.y);
 	cur = a;
-	while ((int)(cur.x - b.x) || (int)(cur.y - b.y))		
+	while ((int)(cur.x - b.x) || (int)(cur.y - b.y))
 	{
 		if (cur.x > param->window_w || cur.y > param->window_l
 			|| cur.y < 0 || cur.x < 0)

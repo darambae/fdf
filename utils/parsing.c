@@ -6,11 +6,20 @@
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:31 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 09:45:02 by dabae            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:44:18 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+static void	check_malloc(void *ptr)
+{
+	if (!ptr)
+	{
+		free(ptr);
+		err_msg_exit("Memory allocation failed");
+	}
+}
 
 static void	allocate_memory_map(t_param *param, char *filename)
 {
@@ -20,12 +29,7 @@ static void	allocate_memory_map(t_param *param, char *filename)
 	t_map	**map;
 
 	line_len = param->map_len;
-	map = malloc(sizeof(t_map *) * (param->map_len + 1));
-	if (!map)
-	{
-		free(map);
-		return ;
-	}
+	map = malloc(sizeof(t_map *) * (line_len + 1));
 	fd = open(filename, O_RDONLY);
 	while (--line_len >= 0)
 	{
@@ -37,12 +41,8 @@ static void	allocate_memory_map(t_param *param, char *filename)
 			get_next_line(-1);
 			break ;
 		}
-		map[line_len] = malloc(sizeof(t_map) * (num_word(ft_split(line, ' ')) + 1));
-		if (!map[line_len])
-		{
-			free(map[line_len]);
-			return ;
-		}
+		map[line_len] = malloc(sizeof(t_map)
+				* (num_word(ft_split(line, ' ')) + 1));
 		free(line);
 		line = NULL;
 	}
