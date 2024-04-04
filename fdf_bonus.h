@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 14:20:26 by dabae             #+#    #+#             */
-/*   Updated: 2024/04/03 14:38:40 by dabae            ###   ########.fr       */
+/*   Created: 2024/03/08 15:14:16 by dabae             #+#    #+#             */
+/*   Updated: 2024/04/03 14:38:45 by dabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "mlx_linux/mlx.h"
 # include <stdlib.h>
@@ -22,8 +22,35 @@
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-# define MAIN_PAD_ESC   65307
+# define LEFT_KEY       65361
+# define RIGHT_KEY      65363
+# define UP_KEY         65362
+# define DOWN_KEY       65364
 
+# define NUM_0          48
+# define NUM_1          49
+# define NUM_2          50
+# define NUM_3          51
+# define NUM_4          52
+# define NUM_5          53
+# define NUM_6          54
+# define NUM_7          55
+# define NUM_8          56
+# define NUM_PLUS       61
+# define NUM_MINUS      45
+
+# define MAIN_PAD_ESC   65307
+# define MAIN_PAD_0     65438
+# define MAIN_PAD_1     65436
+# define MAIN_PAD_2     65433
+# define MAIN_PAD_3     65435
+# define MAIN_PAD_4     65430
+# define MAIN_PAD_5     65437
+# define MAIN_PAD_6     65432
+# define MAIN_PAD_7     65429
+# define MAIN_PAD_8     65431
+# define MAIN_PAD_H		104
+# define MAIN_PAD_L		108
 
 typedef struct s_map
 {
@@ -75,9 +102,15 @@ void	get_max_z(t_param *param);
 void	get_min_z(t_param *param);
 
 void	drawlines(t_param *param);
+
 void	setting_controls(t_param *param);
 int		create_trgb(int t, int r, int g, int b);
 void	set_color(t_param *param);
+void	zoom(int key, t_param *param);
+void	move(int key, t_param *param);
+void	rotate(int key, t_param *param);
+void	change_projection(int key, t_param *param);
+void	reset_camera(int key, t_param *param);
 int		close_window(t_param *param, int is_error);
 void	free_map(t_param *param);
 
