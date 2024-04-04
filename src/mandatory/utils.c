@@ -37,7 +37,7 @@ int	num_word(char **arr)
 	i = 0;
 	while (arr[i])
 		i++;
-	return (i);
+	return (i - 1);
 }
 
 void	err_msg_exit(char *err_msg)

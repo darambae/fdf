@@ -16,47 +16,55 @@ static	void	set_z_scale(t_param *param)
 {
 	float	ratio;
 
-	ratio = (param->max_z - param->min_z) / param->window_l;
-	if (ratio > 4)
-		param->z_scale = 0.25;
-	else if (ratio > 2)
-		param->z_scale = 0.4;
-	else if (ratio > 1)
-		param->z_scale = 0.6;
-	else
+	ratio = param->window_l / (param->max_z - param->min_z);
+	if (ratio < 1)
+		param->z_scale = 0.7;
+	else if (ratio < 2)
 		param->z_scale = 1;
+	else if (ratio < 4)
+		param->z_scale = 1.7;
+	else if (ratio < 6)
+		param->z_scale = 2;
+	else if (ratio < 8)
+		param->z_scale = 3;
+	else if (ratio < 15)
+		param->z_scale = 5;
+	else if (ratio >= 15)
+		param->z_scale = 12;
 }
 
-float	get_scale(t_param *param)
+void	get_scale(t_param *param)
 {
-	float	scale;
+	float	longer;
 
-	scale = 0;
 	if (param->map_len > param->map_max_wid)
-	{
-		if (param->window_l / param->map_len > 3)
-			scale = param->window_l / param->map_len / 3;
-		else if (param->window_l / param->map_len > 1)
-			scale = param->window_l / param->map_len / 2;
-		else
-			scale = param->window_l / param->map_len * 3;
-	}
+		longer = param->map_len;
 	else
-	{
-		if (param->window_w / param->map_max_wid > 3)
-			scale = param->window_w / param->map_max_wid / 3;
-		else if (param->window_w / param->map_max_wid > 1)
-			scale = param->window_w / param->map_max_wid / 2;
-		else
-			scale = param->window_w / param->map_max_wid * 3;
-	}
-	return (scale);
+		longer = param->map_max_wid;
+	if (longer <= 10)
+		param->scale = 50;
+	else if (longer <= 20)
+		param->scale = 28;
+	else if (longer <= 30)
+		param->scale = 20;
+	else if (longer <= 50)
+		param->scale = 11;
+	else if (longer <= 100)
+		param->scale = 4;
+	else if (longer <= 200)
+		param->scale = 2.7;
+	else if (longer <= 300)
+		param->scale = 2;
+	else if (longer <= 500)
+		param->scale = 1.15;
+	else
+		param->scale = 0.8;
 }
 
 static void	get_offset(t_param *param)
 {
 	param->x_offset = param->window_w / 2;
-	param->y_offset = param->window_l / 3;
+	param->y_offset = param->window_l / 4;
 }
 
 static void	set_default(t_param *param)
@@ -98,7 +106,7 @@ int	main(int ac, char **av)
 		get_max_z(param);
 		get_min_z(param);
 		set_color(param);
-		param->scale = get_scale(param);
+		get_scale(param);
 		set_z_scale(param);
 		get_offset(param);
 		drawlines(param);

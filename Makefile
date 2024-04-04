@@ -13,7 +13,7 @@
 NAME = fdf
 BONUS = fdf_bonus
 
-CC = gcc -O0 -g
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 GET_NEXT_LINE_DIR = get_next_line
