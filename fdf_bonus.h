@@ -98,6 +98,7 @@ void	rotation_y(t_map *a, t_param *param);
 void	rotation_z(t_map *a, t_param *param);
 void	isometric(t_map *a, t_param *param);
 void	get_scale(t_param *param);
+void	set_z_scale(t_param *param);
 void	get_max_z(t_param *param);
 void	get_min_z(t_param *param);
 

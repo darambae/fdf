@@ -75,8 +75,8 @@ void	reset_camera(int key, t_param *param)
 		param->is_iso = true;
 		param->iso_angle = 0.5;
 		get_scale(param);
-		param->z_scale = 1;
+		set_z_scale(param);
 		param->x_offset = param->window_w / 2;
-		param->y_offset = (param->window_l - param->map_len * param->scale) / 2;
+		param->y_offset = param->window_l / 4;
 	}
 }

@@ -12,7 +12,7 @@
 
 #include "../fdf_bonus.h"
 
-static	void	set_z_scale(t_param *param)
+void	set_z_scale(t_param *param)
 {
 	float	ratio;
 
