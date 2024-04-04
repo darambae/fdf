@@ -42,23 +42,23 @@ void	get_scale(t_param *param)
 	else
 		longer = param->map_max_wid;
 	if (longer <= 10)
-		param->scale = 50;
+		param->scale = 50 * (param->window_w / 1000);
 	else if (longer <= 20)
-		param->scale = 28;
+		param->scale = 28 * (param->window_w / 1000);
 	else if (longer <= 30)
-		param->scale = 20;
+		param->scale = 20 * (param->window_w / 1000);
 	else if (longer <= 50)
-		param->scale = 11;
+		param->scale = 11 * (param->window_w / 1000);
 	else if (longer <= 100)
-		param->scale = 4;
+		param->scale = 4 * (param->window_w / 1000);
 	else if (longer <= 200)
-		param->scale = 2.7;
+		param->scale = 2.7 * (param->window_w / 1000);
 	else if (longer <= 300)
-		param->scale = 2;
+		param->scale = 2 * (param->window_w / 1000);
 	else if (longer <= 500)
-		param->scale = 1.15;
+		param->scale = 1.15 * (param->window_w / 1000);
 	else
-		param->scale = 0.8;
+		param->scale = 0.8 * (param->window_w / 1000);
 }
 
 static void	get_offset(t_param *param)
@@ -69,8 +69,8 @@ static void	get_offset(t_param *param)
 
 static void	set_default(t_param *param)
 {
-	param->window_w = 1000;
-	param->window_l = 700;
+	param->window_w = 2000;
+	param->window_l = 1400;
 	param->mlx = mlx_init();
 	param->window = mlx_new_window(param->mlx,
 			param->window_w, param->window_l, "FDF");

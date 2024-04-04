@@ -12,28 +12,65 @@
 
 #include "../fdf_bonus.h"
 
-float	get_scale(t_param *param)
+static	void	set_z_scale(t_param *param)
 {
-	int	scale;
+	float	ratio;
 
-	scale = 0;
+	ratio = param->window_l / (param->max_z - param->min_z);
+	if (ratio < 1)
+		param->z_scale = 0.7;
+	else if (ratio < 2)
+		param->z_scale = 1;
+	else if (ratio < 4)
+		param->z_scale = 1.7;
+	else if (ratio < 6)
+		param->z_scale = 2;
+	else if (ratio < 8)
+		param->z_scale = 3;
+	else if (ratio < 15)
+		param->z_scale = 5;
+	else if (ratio >= 15)
+		param->z_scale = 12;
+}
+
+void	get_scale(t_param *param)
+{
+	float	longer;
+
 	if (param->map_len > param->map_max_wid)
-		scale = param->window_l / param->map_len / 3;
+		longer = param->map_len;
 	else
-		scale = param->window_w / param->map_max_wid / 3;
-	return (scale);
+		longer = param->map_max_wid;
+	if (longer <= 10)
+		param->scale = 50 * (param->window_w / 1000);
+	else if (longer <= 20)
+		param->scale = 28  * (param->window_w / 1000);
+	else if (longer <= 30)
+		param->scale = 20  * (param->window_w / 1000);
+	else if (longer <= 50)
+		param->scale = 11  * (param->window_w / 1000);
+	else if (longer <= 100)
+		param->scale = 4  * (param->window_w / 1000);
+	else if (longer <= 200)
+		param->scale = 2.7  * (param->window_w / 1000);
+	else if (longer <= 300)
+		param->scale = 2  * (param->window_w / 1000);
+	else if (longer <= 500)
+		param->scale = 1.15  * (param->window_w / 1000);
+	else
+		param->scale = 0.8  * (param->window_w / 1000);
 }
 
 static void	get_offset(t_param *param)
 {
 	param->x_offset = param->window_w / 2;
-	param->y_offset = param->window_l / 2;
+	param->y_offset = param->window_l / 4;
 }
 
 static void	set_default(t_param *param)
 {
-	param->window_w = 1000;
-	param->window_l = 700;
+	param->window_w = 2000;
+	param->window_l = 1400;
 	param->mlx = mlx_init();
 	param->window = mlx_new_window(param->mlx,
 			param->window_w, param->window_l, "FDF");
@@ -50,7 +87,7 @@ static void	set_default(t_param *param)
 	param->y_angle = 0;
 	param->z_angle = 0;
 	param->iso_angle = 0.5;
-	param->z_scale = 0;
+	param->z_scale = 1;
 }
 
 int	main(int ac, char **av)
@@ -69,7 +106,8 @@ int	main(int ac, char **av)
 		get_max_z(param);
 		get_min_z(param);
 		set_color(param);
-		param->scale = get_scale(param);
+		get_scale(param);
+		set_z_scale(param);
 		get_offset(param);
 		drawlines(param);
 		setting_controls(param);

@@ -16,7 +16,7 @@ static t_map	projection(t_map a, t_param *param)
 {
 	a.x *= param->scale;
 	a.y *= param->scale;
-	a.z *= param->scale + param->z_scale;
+	a.z *= param->z_scale;
 	rotation_x(&a, param);
 	rotation_y(&a, param);
 	rotation_z(&a, param);

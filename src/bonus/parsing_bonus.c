@@ -12,6 +12,19 @@
 
 #include "../fdf_bonus.h"
 
+static int	check_file_type(char *filename, char *type)
+{
+	int	i;
+
+	i = 0;
+	while (type[i] == filename[(int)ft_strlen(filename) - 4 + i] && i < 4)
+		i++;
+	if (type[i])
+		return (0);
+	else
+		return (1);
+}
+
 static void	allocate_memory_map(t_param *param, char *filename)
 {
 	int		fd;
@@ -97,7 +110,7 @@ void	parse_map(char *filename, t_param *param)
 	int		y;
 
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	if (fd < 0 || !check_file_type(filename, ".fdf"))
 		close_window(param, 1);
 	cal_mem_map(filename, param);
 	allocate_memory_map(param, filename);

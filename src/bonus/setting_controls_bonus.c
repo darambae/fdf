@@ -14,13 +14,15 @@
 
 int	close_window(t_param *param, int is_error)
 {
+	if (is_error != 1)
+		is_error = 0;
 	free_map(param);
 	mlx_destroy_image(param->mlx, param->img);
 	mlx_destroy_window(param->mlx, param->window);
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
 	free(param);
-	if (is_error)
+	if (is_error == 1)
 		err_msg_exit("Error");
 	exit(is_error);
 }
