@@ -12,6 +12,7 @@
 
 #include "../fdf_bonus.h"
 
+/*rotation transformation matrix*/
 void	rotation_x(t_map *a, t_param *param)
 {
 	t_map	prev;

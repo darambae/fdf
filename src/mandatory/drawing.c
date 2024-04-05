@@ -27,6 +27,7 @@ static t_map	projection(t_map a, t_param *param)
 	return (a);
 }
 
+/*setting a color on each pixel using param->data_address*/
 static void	my_mlx_pixel_put(t_param *param, int x, int y, int color)
 {
 	char	*dst;
@@ -36,6 +37,7 @@ static void	my_mlx_pixel_put(t_param *param, int x, int y, int color)
 	*(unsigned int *) dst = color;
 }
 
+/*Using Bresenham's line drawing algorithm(only with integer)*/
 static void	line(t_map a, t_map b, t_param *param)
 {
 	int		err[2];
@@ -69,6 +71,7 @@ static void	print_menu(t_param *param)
 		create_trgb(0, 50, 100, 205), "Exit: ESC");
 }
 
+/*draw lines based on calculated position from projection*/
 void	drawlines(t_param *param)
 {
 	int		x;

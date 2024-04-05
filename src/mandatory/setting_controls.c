@@ -12,6 +12,7 @@
 
 #include "../fdf.h"
 
+/*When ESC or X button is pressed, free all with or without error case*/
 int	close_window(t_param *param, int is_error)
 {
 	if (is_error != 1)

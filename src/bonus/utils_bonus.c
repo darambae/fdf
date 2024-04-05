@@ -28,6 +28,7 @@ int	is_positive(float a)
 		return (-1);
 }
 
+/*Count the number of words in a line from get_next_line(not counting last word "\n")*/
 int	num_word(char **arr)
 {
 	int	i;

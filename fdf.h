@@ -60,24 +60,33 @@ typedef struct s_param
 	t_map	**map;
 }			t_param;
 
+/*functions for parsing a map*/
 int		num_word(char **arr);
+void	parse_map(char *filename, t_param *param);
+
+/*functions for drawing lines*/
 float	absolute(float a);
 int		is_positive(float a);
+void	drawlines(t_param *param);
+
+/*utils*/
+void	free_map(t_param *param);
 void	err_msg_exit(char *err_msg);
-void	parse_map(char *filename, t_param *param);
+
+/*functions to modify the image*/
 void	rotation_x(t_map *a, t_param *param);
 void	rotation_y(t_map *a, t_param *param);
 void	rotation_z(t_map *a, t_param *param);
 void	isometric(t_map *a, t_param *param);
+void	setting_controls(t_param *param);
+int		create_trgb(int t, int r, int g, int b);
+void	set_color(t_param *param);
+
+/*functions to initializing parameters*/
 void	get_scale(t_param *param);
 void	get_max_z(t_param *param);
 void	get_min_z(t_param *param);
 
-void	drawlines(t_param *param);
-void	setting_controls(t_param *param);
-int		create_trgb(int t, int r, int g, int b);
-void	set_color(t_param *param);
 int		close_window(t_param *param, int is_error);
-void	free_map(t_param *param);
 
 #endif

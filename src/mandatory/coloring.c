@@ -61,6 +61,7 @@ void	get_min_z(t_param *param)
 	param->min_z = tmp;
 }
 
+/*setting a color on each dot depending on its z value*/
 void	set_color(t_param *param)
 {
 	int	x;

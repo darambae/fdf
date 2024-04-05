@@ -12,6 +12,7 @@
 
 #include "../fdf_bonus.h"
 
+/*When ESC or X button is pressed, free all with or without error case*/
 int	close_window(t_param *param, int is_error)
 {
 	if (is_error != 1)
@@ -27,6 +28,7 @@ int	close_window(t_param *param, int is_error)
 	exit(is_error);
 }
 
+/*Changing z-axis*/
 static void	change_height(int key, t_param *param)
 {
 	if (key == MAIN_PAD_H)
