@@ -1,7 +1,7 @@
 # FDF
 ### Languages
 
-- [French version](https://github.com/darambae/fdf/readme_fr.md)
+- [French version](https://github.com/darambae/fdf/blob/main/readme_fr.md)
 - [Korean version](https://github.com/darambae/fdf/blob/main/readme_kr.md)
 
 ## Table of Contents
