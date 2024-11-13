@@ -1,6 +1,4 @@
 
-### French Version: [README_fr.md](#)
-
 # FDF
 
 ## Table des matières
