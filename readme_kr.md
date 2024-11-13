@@ -1,4 +1,4 @@
-### Korean Version: [README_kr.md](#)
+### Korean Version: [readme_kr.md](#)
 
 # FDF
 
