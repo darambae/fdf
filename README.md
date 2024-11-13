@@ -1,4 +1,5 @@
-# FDF
+# FDF (with bonus)
+*Personally I recommand to do bonus part if you choose FDF project since it's much more interesting than only mandatory part.
 ### Languages
 
 - [French version](https://github.com/darambae/fdf/blob/main/readme_fr.md)
